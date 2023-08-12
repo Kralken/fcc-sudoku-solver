@@ -4,7 +4,7 @@ class SudokuSolver {
     return tester.test(puzzleString);
   }
 
-  #stringIndexFromRowCol(row, column) {
+  stringIndexFromRowCol(row, column) {
     const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
     let rowNum;
     if (/^[a-iA-I]$/.test(row)) {
