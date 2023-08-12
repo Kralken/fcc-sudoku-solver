@@ -48,6 +48,7 @@ class SudokuSolver {
 
   solve(puzzleString) {
     if (!puzzleString.includes(".")) return puzzleString;
+    if (!this.validate(puzzleString)) return false;
     let dotIndex = puzzleString.indexOf(".");
     for (let i = 1; i <= 9; i++) {
       let row = Math.floor(dotIndex / 9);
