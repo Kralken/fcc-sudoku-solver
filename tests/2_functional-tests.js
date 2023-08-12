@@ -270,10 +270,7 @@ suite("Functional Tests", () => {
           "Required field(s) missing",
           "correct error text"
         );
-        done();
       });
-  });
-  test("POST request to check with missing required fields", (done) => {
     chai
       .request(server)
       .keepOpen()
@@ -291,10 +288,7 @@ suite("Functional Tests", () => {
           "Required field(s) missing",
           "correct error text"
         );
-        done();
       });
-  });
-  test("POST request to check with missing required fields", (done) => {
     chai
       .request(server)
       .keepOpen()
