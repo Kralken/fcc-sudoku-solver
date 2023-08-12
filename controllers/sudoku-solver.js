@@ -17,7 +17,7 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row, column, value) {
-    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+    if (puzzleString[this.stringIndexFromRowCol(row, column)] == value)
       return true;
     const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
     let rowNum;
@@ -33,7 +33,7 @@ class SudokuSolver {
   }
 
   checkColPlacement(puzzleString, row, column, value) {
-    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+    if (puzzleString[this.stringIndexFromRowCol(row, column)] == value)
       return true;
     const colIndex = column - 1;
     for (let i = colIndex; i < 81; i += 9) {
@@ -43,7 +43,7 @@ class SudokuSolver {
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
-    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+    if (puzzleString[this.stringIndexFromRowCol(row, column)] == value)
       return true;
     const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
     let rowNum;
