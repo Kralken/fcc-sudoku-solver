@@ -4,7 +4,21 @@ class SudokuSolver {
     return tester.test(puzzleString);
   }
 
+  #stringIndexFromRowCol(row, column) {
+    const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
+    let rowNum;
+    if (/^[a-iA-I]$/.test(row)) {
+      rowNum = rowToNum[row.toLowerCase()];
+    } else {
+      rowNum = row;
+    }
+    let colNum = parseInt(column) - 1;
+    return rowNum * 9 + colNum;
+  }
+
   checkRowPlacement(puzzleString, row, column, value) {
+    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+      return true;
     const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
     let rowNum;
     if (/^[a-iA-I]$/.test(row)) {
@@ -13,13 +27,14 @@ class SudokuSolver {
       rowNum = row;
     }
     const startPosition = rowNum * 9;
+    const rowString = puzzleString.substring(startPosition, startPosition + 9);
 
-    return !puzzleString
-      .substring(startPosition, startPosition + 9)
-      .includes(`${value}`);
+    return !rowString.includes(`${value}`);
   }
 
   checkColPlacement(puzzleString, row, column, value) {
+    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+      return true;
     const colIndex = column - 1;
     for (let i = colIndex; i < 81; i += 9) {
       if (value == puzzleString[i]) return false;
@@ -28,6 +43,8 @@ class SudokuSolver {
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
+    if (puzzleString[this.#stringIndexFromRowCol(row, column)] == value)
+      return true;
     const rowToNum = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7, i: 8 };
     let rowNum;
     if (/^[a-iA-I]$/.test(row)) {
