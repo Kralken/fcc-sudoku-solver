@@ -140,7 +140,7 @@ suite("Functional Tests", () => {
       })
       .end((err, res) => {
         assert.equal(res.status, 200, "correct status code");
-        assert.true(res.body.valid, "correct response from server");
+        assert.isTrue(res.body.valid, "correct response from server");
         assert.notProperty(
           res.body,
           "conflict",
@@ -213,7 +213,7 @@ suite("Functional Tests", () => {
       });
   });
   // Check a puzzle placement with all placement conflicts: POST request to /api/check
-  test("handle POST request to check with all placemetn conflicts", (done) => {
+  test("handle POST request to check with all placement conflicts", (done) => {
     chai
       .request(server)
       .keepOpen()
@@ -222,7 +222,7 @@ suite("Functional Tests", () => {
       .send({
         puzzle:
           "..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1",
-        coorinate: "e4",
+        coordinate: "e4",
         value: "1",
       })
       .end((err, res) => {
@@ -398,7 +398,7 @@ suite("Functional Tests", () => {
       .end((err, res) => {
         assert.equal(res.status, 200, "correct status code");
         assert.equal(
-          res.status.error,
+          res.body.error,
           "Invalid coordinate",
           "correct error text"
         );
@@ -420,7 +420,7 @@ suite("Functional Tests", () => {
       })
       .end((err, res) => {
         assert.equal(res.status, 200, "correct status code");
-        assert.equal(res.status.error, "Invalid value", "correct error text");
+        assert.equal(res.body.error, "Invalid value", "correct error text");
         done();
       });
   });
