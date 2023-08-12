@@ -351,10 +351,7 @@ suite("Functional Tests", () => {
           "Expected puzzle to be 81 characters long",
           "correct error text"
         );
-        done();
       });
-  });
-  test("POST request to /api/check with invalid puzzle characters", (done) => {
     chai
       .request(server)
       .keepOpen()
