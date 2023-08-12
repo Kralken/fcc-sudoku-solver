@@ -346,7 +346,29 @@ suite("Functional Tests", () => {
       .type("form")
       .send({
         puzzle:
-          ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6",
+          ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.",
+        coordinate: "e7",
+        value: "5",
+      })
+      .end((err, res) => {
+        assert.equal(res.status, 200, "correct status code");
+        assert.equal(
+          res.body.error,
+          "Expected puzzle to be 81 characters long",
+          "correct error text"
+        );
+        done();
+      });
+  });
+  test("POST request to /api/check with invalid puzzle characters", (done) => {
+    chai
+      .request(server)
+      .keepOpen()
+      .post("/api/check")
+      .type("form")
+      .send({
+        puzzle:
+          ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.69",
         coordinate: "e7",
         value: "5",
       })
